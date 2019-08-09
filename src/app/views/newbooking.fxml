@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="addbooking" prefHeight="372.0" prefWidth="569.0" style="-fx-background-color: #2d3436;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.newbookingcontroller">
+   <children>
+      <Label layoutX="7.0" layoutY="14.0" text="Guest Information" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="7.0" layoutY="109.0" text="Nationality" textFill="WHITE" />
+      <Label layoutX="367.0" layoutY="14.0" text="Available Rooms" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="181.0" layoutY="109.0" text="Meal Plan" textFill="WHITE" />
+      <Label layoutX="7.0" layoutY="178.0" text="Bed Type" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tf_fname" layoutX="7.0" layoutY="37.0" promptText="First Name" style="-fx-background-color: #636e72; -fx-text-fill: #fff;" />
+      <TextField fx:id="tf_lname" layoutX="183.0" layoutY="37.0" promptText="Last Name" style="-fx-background-color: #636e72; -fx-text-fill: #FFF;" />
+      <TextField fx:id="tf_email" layoutX="7.0" layoutY="67.0" promptText="Email" style="-fx-background-color: #636e72; -fx-text-fill: #FFF;" />
+      <TextField fx:id="tf_contact" layoutX="182.0" layoutY="67.0" promptText="Contact" style="-fx-background-color: #636e72; -fx-text-fill: #FFF;" />
+      <ChoiceBox fx:id="cb_nationality" accessibleText="Nationality" layoutX="85.0" layoutY="104.0" prefHeight="26.0" prefWidth="93.0" style="-fx-background-color: #636e72; -fx-text-fill: #FFF;" />
+      <DatePicker editable="false" layoutX="4.0" layoutY="147.0" prefHeight="26.0" prefWidth="171.0" promptText="Check in date" style="-fx-background-color: #636e72;" />
+      <DatePicker editable="false" layoutX="179.0" layoutY="147.0" prefHeight="26.0" prefWidth="171.0" promptText="Check out date" style="-fx-background-color: #636e72;" />
+      <Separator layoutX="361.0" layoutY="9.0" minWidth="-Infinity" orientation="VERTICAL" prefHeight="295.0" prefWidth="1.0" style="-fx-background-color: #fff;" />
+      <Button layoutX="367.0" layoutY="307.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="180.0" style="-fx-background-color: #6c5ce7;" text="Add Guest" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="15.0" />
+         </font>
+      </Button>
+      <ChoiceBox fx:id="cb_mealplan" accessibleText="Nationality" layoutX="252.0" layoutY="104.0" prefHeight="26.0" prefWidth="101.0" style="-fx-background-color: #636e72; -fx-text-fill: #FFF;" />
+      <ProgressIndicator layoutX="516.0" layoutY="14.0" prefHeight="19.0" prefWidth="19.0" progress="0.84" style="-fx-progress-color: white;" />
+      <Button layoutX="170.0" layoutY="307.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="86.0" style="-fx-background-color: LIGHTYELLOW;" text="Pay Later">
+         <font>
+            <Font name="Lato Regular" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="264.0" layoutY="307.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="86.0" style="-fx-background-color: #6c5ce7;" text="Paid" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="326.0" layoutY="234.0" textFill="WHITE" />
+      <ScrollPane hbarPolicy="NEVER" layoutX="375.0" layoutY="37.0" prefHeight="264.0" prefWidth="180.0" style="-fx-background-color: TRANSPARENT;" stylesheets="@../styles/style.css">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="176.0" style="-fx-background-color: TRANSPARENT;" stylesheets="@../styles/style.css" />
+        </content>
+      </ScrollPane>
+      <VBox layoutX="174.0" layoutY="189.0" prefHeight="92.0" prefWidth="109.0" spacing="5.0">
+         <children>
+            <Label text="Room+Meal" textFill="WHITE" />
+            <Label text="CGST" textFill="WHITE" />
+            <Label text="SGST" textFill="WHITE" />
+            <Separator prefWidth="200.0" style="-fx-background-color: white;" />
+            <Label text="Total" textFill="WHITE">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="276.0" layoutY="189.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="92.0" prefWidth="71.0" spacing="5.0">
+         <children>
+            <Label text="0" textFill="WHITE" />
+            <Label text="0" textFill="WHITE" />
+            <Label text="0" textFill="WHITE" />
+            <Separator prefWidth="200.0" style="-fx-background-color: white;" />
+            <Label text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <Label layoutX="231.0" layoutY="16.0" text="ERROR MESSAGE" textFill="WHITE">
+         <font>
+            <Font name="Lato Regular" size="13.0" />
+         </font>
+      </Label>
+      <Group layoutX="139.0" layoutY="250.0" />
+      <ToggleButton layoutX="7.0" layoutY="200.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" styleClass="button" stylesheets="@../styles/style.css">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/single.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
+      <ToggleButton layoutX="57.0" layoutY="200.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" styleClass="button" stylesheets="@../styles/style.css">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/double.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
+      <ToggleButton layoutX="7.0" layoutY="242.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" styleClass="button" stylesheets="@../styles/style.css">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/queen.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
+      <ToggleButton layoutX="57.0" layoutY="242.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="36.0" styleClass="button" stylesheets="@../styles/style.css">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/king.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </ToggleButton>
+   </children>
+</AnchorPane>

@@ -1,0 +1,37 @@
+
+Create New Schema
+CREATE SCHEMA `hms` ;
+
+Create Hotel Executive User Table
+CREATE TABLE `hms`.`userinfo` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(30) NOT NULL,
+  `username` VARCHAR(20) NOT NULL,
+  `email` VARCHAR(30) NOT NULL,
+  `password` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `username_UNIQUE` (`username` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC));
+
+Create Guest Info
+CREATE TABLE `hms`.`guestinfo` (
+  `id` INT NOT NULL,
+  `firstname` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `contact` VARCHAR(45) NOT NULL,
+  `nationality` VARCHAR(45) NOT NULL,
+  `guestplus` INT NULL,
+  `cin` DATE NOT NULL,
+  `cout` DATE NOT NULL,
+  `mealplan` VARCHAR(45) NOT NULL,
+  `paymentstat` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
+
+Create Rooms Information
+CREATE TABLE `hms`.`roomsinfo` (
+  `rno` INT NOT NULL,
+  `rtype` VARCHAR(45) NOT NULL,
+  `price` INT NOT NULL,
+  `availability` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`rno`));
