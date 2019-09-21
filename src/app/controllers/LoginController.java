@@ -1,6 +1,6 @@
 package app.controllers;
 
-import app.model.dbhandler;
+import app.database.DbHandler;
 import javafx.animation.PauseTransition;
 import javafx.fxml.*;
 import javafx.scene.Parent;
@@ -10,35 +10,30 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.event.ActionEvent;
+
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-
     @FXML
     private Button btn_login;
-
     @FXML
     private Button btn_register;
-
     @FXML
     private ImageView icon_loading;
-
-    @FXML
-    private CheckBox remembercb;
-
     @FXML
     private PasswordField tf_password;
-
     @FXML
     private TextField tf_username;
-
     @FXML
     private Label txt_logo;
 
-    private dbhandler handler;
+    private DbHandler handler;
     private Connection connection;
     private PreparedStatement pst;
 
@@ -47,7 +42,7 @@ public class LoginController implements Initializable {
         icon_loading.setVisible(false);
         tf_username.setStyle("-fx-text-inner-color:a0a2ab");
         tf_password.setStyle("-fx-text-inner-color:a0a2ab");
-        handler = new dbhandler();
+        handler = new DbHandler();
     }
 
     @FXML
@@ -71,10 +66,9 @@ public class LoginController implements Initializable {
                     size = rs.getRow();
                 }
                 if (size == 1){
-                    System.out.println("Login Successful");
                     btn_login.getScene().getWindow().hide();
                     Stage dashboard =  new Stage();
-                    Parent root2 = FXMLLoader.load(getClass().getResource("/app/views/dash.fxml"));
+                    Parent root2 = FXMLLoader.load(getClass().getResource("/resources/views/dash.fxml"));
                     Scene scene = new Scene(root2);
                     dashboard.setScene(scene);
                     dashboard.show();
@@ -99,7 +93,7 @@ public class LoginController implements Initializable {
     public void registerAction(ActionEvent e) throws IOException {
         btn_login.getScene().getWindow().hide();
         Stage registration =  new Stage();
-        Parent root1 = FXMLLoader.load(getClass().getResource("/app/views/register.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/resources/views/register.fxml"));
         Scene scene = new Scene(root1);
         registration.setScene(scene);
         registration.show();

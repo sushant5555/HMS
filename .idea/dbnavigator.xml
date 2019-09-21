@@ -25,13 +25,17 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="6a61bd34-034e-4a40-a939-990bdcc19056">
-        <schema name="hms" object-types="table, dataset trigger, constraint, column, procedure, view, index, function" />
+        <schema name="hms" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="6a61bd34-034e-4a40-a939-990bdcc19056">
-      <console name="SQL" type="STANDARD" schema="" session="Main" />
+      <console name="SQL" type="STANDARD" schema="hms" session="Main">SELECT * FROM guestinfo;
+
+SELECT * FROM roomsinfo;
+
+SELECT * FROM userinfo;</console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

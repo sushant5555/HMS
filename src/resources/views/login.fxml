@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.LoginController">
+  <children>
+    <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="700.0" style="-fx-background-color:#2d3436">
+      <children>
+        <Pane layoutX="0.0" layoutY="0.0" prefHeight="400.0" prefWidth="199.99997792968497" style="-fx-background-color: linear-gradient(to bottom, #11998e 0%, #38ef7d 100%);">
+          <children>
+            <Label id="logo" fx:id="txt_logo" layoutX="11.0" layoutY="91.0" text="EMERALD INN" textFill="#d0ff5c">
+              <font>
+                <Font name="DejaVu Sans Bold" size="23.0" fx:id="x2" />
+              </font>
+              <stylesheets>
+                <URL value="@../styles/style.css" />
+              </stylesheets>
+            </Label>
+            <Label id="logo" layoutX="45.0" layoutY="368.0" text="By Susmit Gorde">
+              <font>
+                <Font name="Lato Regular" size="15.0" fx:id="x1" />
+              </font>
+              <stylesheets>
+                <URL value="@../styles/style.css" />
+              </stylesheets>
+            </Label>
+              <ImageView fx:id="img_logo" fitHeight="58.0" fitWidth="50.0" layoutX="75.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@../../app/images/hotel.png" />
+                </image>
+              </ImageView>
+                  <Label id="logo" fx:id="txt_logo1" layoutX="10.0" layoutY="120.0" prefHeight="66.0" prefWidth="179.0" text="Hotel Management System" textAlignment="CENTER" textFill="#434343" wrapText="true">
+                     <font>
+                        <Font name="Lato Regular" size="20.0" fx:id="x21" />
+                     </font>
+                     <stylesheets>
+                        <URL value="@../styles/style.css" />
+                     </stylesheets>
+                  </Label>
+          </children>
+        </Pane>
+        <TextField id="usertextfield" fx:id="tf_username" alignment="CENTER_LEFT" layoutX="250.0" layoutY="98.0" prefHeight="40.0" prefWidth="200.0" promptText="Username">
+          <stylesheets>
+            <URL value="@../styles/style.css" />
+          </stylesheets>
+        </TextField>
+        <PasswordField id="passwordtext" fx:id="tf_password" layoutX="250.0" layoutY="163.0" prefHeight="40.0" prefWidth="200.0" promptText="Password">
+          <stylesheets>
+            <URL value="@../styles/style.css" />
+          </stylesheets>
+        </PasswordField>
+        <Button id="loginbtn" fx:id="btn_login" cancelButton="false" defaultButton="false" font="$x1" layoutX="250.0" layoutY="224.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to right, #11998e 0%, #38ef7d 100%);" text="LOGIN">
+          <stylesheets>
+            <URL value="@../styles/style.css" />
+          </stylesheets>
+        </Button>
+        <Button fx:id="btn_register" font="$x1" layoutX="562.0" layoutY="23.0" mnemonicParsing="false" onAction="#registerAction" prefHeight="40.0" prefWidth="124.0" style="-fx-background-color: linear-gradient(to right, #38ef7d 0%, #11998e  100%);" text="REGISTER">
+          <stylesheets>
+            <URL value="@../styles/style.css" />
+          </stylesheets>
+        </Button>
+        <ImageView fx:id="icon_loading" fitHeight="50.0" fitWidth="50.0" layoutX="325.0" layoutY="294.0" pickOnBounds="true" preserveRatio="true" smooth="true" visible="true">
+          <image>
+            <Image url="@../../app/images/ellipsis-loading.gif" />
+          </image>
+        </ImageView>
+        <ImageView id="usericon" fx:id="icon_user" fitHeight="29.99999237060547" fitWidth="29.99999237060547" layoutX="215.0" layoutY="102.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../../app/images/user.png" />
+          </image>
+        </ImageView>
+        <ImageView id="passwordicon" fx:id="icon_password" fitHeight="29.99999237060547" fitWidth="29.99999237060547" layoutX="215.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
+          <image>
+            <Image url="@../../app/images/password.png" />
+          </image>
+        </ImageView>
+        <Label id="logo" font="$x2" layoutX="250.0" layoutY="24.0" text="Login" textFill="WHITE">
+          <stylesheets>
+            <URL value="@../styles/style.css" />
+          </stylesheets>
+        </Label>
+      </children>
+      <stylesheets>
+        <URL value="@../styles/style.css" />
+      </stylesheets>
+    </Pane>
+  </children>
+  <stylesheets>
+    <URL value="@../styles/style.css" />
+  </stylesheets>
+</AnchorPane>

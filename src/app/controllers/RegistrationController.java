@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
-import app.model.dbhandler;
+import app.database.DbHandler;
 
 public class RegistrationController implements Initializable {
     @FXML
@@ -40,7 +40,7 @@ public class RegistrationController implements Initializable {
     private TextField tf_username;
 
     private Connection connection;
-    private dbhandler handler ;
+    private DbHandler handler ;
     private PreparedStatement pst, pst1;
     private int RESULT = 0;
 
@@ -51,7 +51,7 @@ public class RegistrationController implements Initializable {
         tf_password.setStyle("-fx-text-inner-color:a0a2ab");
         tf_email.setStyle("-fx-text-inner-color:a0a2ab");
         tf_fullname.setStyle("-fx-text-inner-color:a0a2ab");
-        handler = new dbhandler();
+        handler = new DbHandler();
     }
 
     @FXML
@@ -110,7 +110,7 @@ public class RegistrationController implements Initializable {
     public void gotoLogin() throws IOException {
         btn_register.getScene().getWindow().hide();
         Stage login =  new Stage();
-        Parent root1 = FXMLLoader.load(getClass().getResource("/app/views/login.fxml"));
+        Parent root1 = FXMLLoader.load(getClass().getResource("/resources/views/login.fxml"));
         Scene scene = new Scene(root1);
         login.setScene(scene);
         login.show();

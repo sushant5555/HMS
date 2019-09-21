@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.dashcontroller">
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="165.0" style="-fx-background-color: #2d3436;" stylesheets="@../style.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label style="-fx-text-fill: linear-gradient(to right, #11998e 0%, #38ef7d 100%);" text="EMERALD INN" textAlignment="CENTER" textFill="WHITE" textOverrun="ELLIPSIS" underline="false">
+               <font>
+                  <Font name="Lato Bold" size="15.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="49.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/hotel.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="btn_dashboard" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="209.0" stylesheets="@../style.css" text="Dashboard" textFill="#1b1b1b">
+               <font>
+                  <Font name="Lato Regular" size="14.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/dashboard.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_newbooking" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="197.0" stylesheets="@../style.css" text="New Booking" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="glyph-icon">
+                     <image>
+                        <Image url="@../images/booking.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="btn_viewbooking" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="223.0" stylesheets="@../style.css" text="View Bookings" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/view.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_roomstatus" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="229.0" stylesheets="@../style.css" text="Room Status" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/availability.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_roommanager" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="229.0" stylesheets="@../style.css" text="Room Manager" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/roommanager.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_earnings" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="229.0" stylesheets="@../style.css" text="Earnings" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/earnings.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btn_logout" alignment="CENTER_LEFT" mnemonicParsing="false" prefHeight="40.0" prefWidth="222.0" stylesheets="@../style.css" text="Logout" textFill="#1b1b1b">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/logout.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <top>
+      <AnchorPane prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: linear-gradient(to right, #11998e 30%, #38ef7d 100%); -fx-border-style: none none solid none; -fx-border-width: 0 0 3 0; -fx-border-color: linear-gradient(to right, #38ef7d 30%, #11998e 100%);" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="lbl_location" alignment="CENTER_RIGHT" layoutX="562.0" layoutY="5.0" prefHeight="16.0" prefWidth="308.0" text="Dashboard" textFill="#545454" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="5.0">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="11.0" layoutY="5.0" prefHeight="19.0" prefWidth="153.0" text="Welcome, Admin!" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="30.0" prefWidth="900.0" style="-fx-background-color: #2d3436;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="26.0" layoutY="8.0" style="-fx-text-fill: linear-gradient(to left, #11998e 0%, #38ef7d 100%);" text="By Susmit Gorde" textFill="WHITE" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="26.0" />
+         </children>
+      </AnchorPane>
+   </bottom>
+   <right>
+      <AnchorPane prefHeight="540.0" prefWidth="30.0" style="-fx-background-color: #2d3436;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <AnchorPane fx:id="holderpane" style="-fx-background-color: grey;" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
