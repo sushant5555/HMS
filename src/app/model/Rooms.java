@@ -1,37 +1,47 @@
 package app.model;
 
 public class Rooms {
-    private String rno;
-    private String rtype;
-    private String ravail;
+    private String no;
+    private String type;
+    private float price;
+    private String avail;
 
-    public Rooms(String rno, String rtype, String ravail) {
-        this.rno = rno;
-        this.rtype = rtype;
-        this.ravail = ravail;
+    public Rooms(String no, String type, String price, String avail) {
+        this.no = no;
+        this.type = type;
+        this.price = Float.parseFloat(price);
+        this.avail = avail;
     }
 
-    public String getRno() {
-        return rno;
+    public String getNo() {
+        return no;
     }
 
-    public void setRno(String rno) {
-        this.rno = rno;
+    public void setNo(String no) {
+        this.no = no;
     }
 
-    public String getRtype() {
-        return rtype;
+    public String getType() {
+        return type;
     }
 
-    public void setRtype(String rtype) {
-        this.rtype = rtype;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getRavail() {
-        return ravail;
+    public float getPrice() {
+        return price;
     }
 
-    public void setRavail(String ravail) {
-        this.ravail = ravail;
+    public void setPrice(float price) {
+        this.price = price;
+    }
+
+    public String getAvail() {
+        return avail;
+    }
+
+    public void setAvail(String avail) {
+        this.avail = avail;
     }
 }

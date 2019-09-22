@@ -23,15 +23,11 @@ public class LoginController implements Initializable {
     @FXML
     private Button btn_login;
     @FXML
-    private Button btn_register;
-    @FXML
     private ImageView icon_loading;
     @FXML
     private PasswordField tf_password;
     @FXML
     private TextField tf_username;
-    @FXML
-    private Label txt_logo;
 
     private DbHandler handler;
     private Connection connection;

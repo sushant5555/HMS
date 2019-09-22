@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="6a61bd34-034e-4a40-a939-990bdcc19056">
-        <schema name="hms" object-types="table, view" />
+        <schema name="hms" object-types="function, index, column, procedure, constraint, view, table, dataset trigger" />
       </connection>
     </loaded-nodes>
   </component>

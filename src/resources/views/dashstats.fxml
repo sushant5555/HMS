@@ -3,66 +3,59 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="dashstats" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2d3436;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="dashstats" prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #2d3436;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.DashStatsController">
   <children>
-  <Rectangle arcHeight="30.0" arcWidth="30.0" fill="#ffeaa7" height="100.0" layoutX="206.0" layoutY="24.0" stroke="TRANSPARENT" strokeType="INSIDE" width="150.0">
-         <effect>
-      <DropShadow height="17.98818897637795" radius="8.745078740157478" width="18.992125984251967" fx:id="x6" />
-         </effect>
-      </Rectangle>
-  <Rectangle arcHeight="30.0" arcWidth="30.0" effect="$x6" fill="#55efc4" height="100.0" layoutX="390.0" layoutY="24.0" stroke="TRANSPARENT" strokeType="INSIDE" width="150.0" />
-  <Circle fill="#fdcb6e" layoutX="239.0" layoutY="75.0" radius="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-  <Circle fill="#00b894" layoutX="420.0" layoutY="74.0" radius="25.0" stroke="TRANSPARENT" strokeType="INSIDE" />
-  <Label layoutX="272.0" layoutY="38.0" prefHeight="36.0" prefWidth="70.0" text="New Bookings" textAlignment="LEFT" wrapText="true">
-         <font>
-      <Font name="Lato Regular" size="14.0" fx:id="x1" />
-         </font>
-         <textFill>
-      <Color blue="0.250" green="0.250" red="0.250" fx:id="x2" />
-         </textFill>
-      </Label>
-  <Label font="$x1" layoutX="452.0" layoutY="38.0" prefHeight="36.0" prefWidth="70.0" text="Total Earnings" textAlignment="LEFT" textFill="$x2" wrapText="true" />
-  <ImageView fitHeight="28.0" fitWidth="28.0" layoutX="225.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
-    <image>
-      <Image url="@../images/new-booking-icon.png" />
-    </image>
-  </ImageView>
-  <ImageView fitHeight="27.999900817871094" fitWidth="27.999900817871094" layoutX="406.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
-    <image>
-      <Image url="@../images/earning-dashboard-icon.png" />
-    </image>
-  </ImageView>
-  <Label layoutX="272.0" layoutY="71.0" prefHeight="27.999986376948073" prefWidth="69.9998779296875" text="10" textAlignment="LEFT" wrapText="true">
-         <font>
-      <Font name="Lato Regular" size="18.0" fx:id="x3" />
-         </font>
-         <textFill>
-      <Color blue="0.251" green="0.251" red="0.251" fx:id="x4" />
-         </textFill>
-      </Label>
-  <Label alignment="TOP_LEFT" font="$x3" layoutX="452.0" layoutY="75.0" prefHeight="48.99998637694807" prefWidth="88.00009999999747" text="50000" textAlignment="LEFT" textFill="$x4" wrapText="true" />
-      <TableView fx:id="tableview" layoutX="17.0" layoutY="122.0" prefHeight="350.0" prefWidth="670.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+      <TableView fx:id="tableview" layoutX="17.0" layoutY="122.0" prefHeight="350.0" prefWidth="670.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="140.0">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button layoutX="14.0" layoutY="21.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="136.0" style="-fx-background-color: #74b9ff; -fx-border-radius: 10;" text="Available Rooms" wrapText="true">
+      <Button id="dash-rooms" fx:id="btn_rooms" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="177.0" stylesheets="@../style.css" text="Available Rooms" wrapText="true" AnchorPane.leftAnchor="14.0">
          <graphic>
-            <ImageView fitHeight="43.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/available-rooms-icon.png" />
                </image>
             </ImageView>
          </graphic>
       </Button>
+      <Button id="dash-bookings" fx:id="btn_bookings" layoutX="262.0" layoutY="71.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="177.0" stylesheets="@../style.css" text="Bookings" wrapText="true" AnchorPane.leftAnchor="262.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/new-booking-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button id="dash-earnings" fx:id="btn_earnings" layoutX="509.0" layoutY="71.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="177.0" stylesheets="@../style.css" text="Recent earnings" wrapText="true" AnchorPane.rightAnchor="14.0">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/earning-dashboard-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label fx:id="lbl_bookings" alignment="CENTER" layoutX="262.0" layoutY="8.0" prefHeight="60.0" prefWidth="177.0" text="13" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="262.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_rooms" alignment="CENTER" layoutX="14.0" layoutY="8.0" prefHeight="60.0" prefWidth="177.0" text="20" textAlignment="CENTER" textFill="WHITE" AnchorPane.leftAnchor="14.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbl_earnings" alignment="CENTER" layoutX="509.0" layoutY="8.0" prefHeight="60.0" prefWidth="177.0" text="123456789" textFill="WHITE" wrapText="true" AnchorPane.rightAnchor="14.0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
   </children>
 </AnchorPane>
