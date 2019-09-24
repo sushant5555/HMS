@@ -79,7 +79,7 @@ public class RoomStatController implements Initializable {
                 cellFactory = new Callback<TableColumn<RoomStatus, String>, TableCell<RoomStatus, String>>() {
             @Override
             public TableCell call(final TableColumn<RoomStatus, String> param) {
-                Button btn_cout = new JFXButton("Check Out");
+                Button btn_cout = new Button("Check Out");
                 TableCell<RoomStatus, String> cell = new TableCell<RoomStatus, String>() {
                     @Override
                     public void updateItem(String item, boolean empty) {
@@ -88,7 +88,7 @@ public class RoomStatController implements Initializable {
                             btn_cout.setOnAction(event -> {
                                 RoomStatus model = getTableView().getItems().get(getIndex());
                                 DbHandler handler = new DbHandler();
-                                if (handler.updateGuestCheckout(model.getGuestid(),model.getPrice())){
+                                if (handler.updateGuestCheckout(model.getGuestid(),model.getPrice(), model.getRno())){
                                     Alert a = new Alert(Alert.AlertType.INFORMATION);
                                     a.setHeaderText(null);
                                     a.setContentText("Success!");

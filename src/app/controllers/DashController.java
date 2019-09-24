@@ -50,7 +50,6 @@ public class DashController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
-        btn_dashboard.setDisable(true);
         btn_dashboard.setOnMouseClicked(handler);
         btn_newbooking.setOnMouseClicked(handler);
         btn_viewbooking.setOnMouseClicked(handler);

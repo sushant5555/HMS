@@ -1,23 +1,29 @@
 package app.model;
 
 public class Rooms {
-    private String no;
+    private int no;
     private String type;
     private float price;
     private String avail;
+    private String dummy;
 
-    public Rooms(String no, String type, String price, String avail) {
+    public Rooms(int no, String type, float price, String avail) {
         this.no = no;
         this.type = type;
-        this.price = Float.parseFloat(price);
+        this.price = price;
         this.avail = avail;
+        this.dummy = "dummy";
     }
 
-    public String getNo() {
+    public String getDummy() {
+        return dummy;
+    }
+
+    public int getNo() {
         return no;
     }
 
-    public void setNo(String no) {
+    public void setNo(int no) {
         this.no = no;
     }
 

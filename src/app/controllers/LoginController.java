@@ -36,8 +36,6 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         icon_loading.setVisible(false);
-        tf_username.setStyle("-fx-text-inner-color:a0a2ab");
-        tf_password.setStyle("-fx-text-inner-color:a0a2ab");
         handler = new DbHandler();
     }
 
@@ -68,7 +66,6 @@ public class LoginController implements Initializable {
                     Scene scene = new Scene(root2);
                     dashboard.setScene(scene);
                     dashboard.show();
-                    dashboard.setResizable(false);
 
                 }else{
                     Alert alert = new Alert(Alert.AlertType.ERROR);

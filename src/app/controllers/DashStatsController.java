@@ -46,7 +46,7 @@ public class DashStatsController implements Initializable {
         if (rs!=null){
             try {
                 while (rs.next()){
-                    roomsList.add(new Rooms(rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4)));
+                    roomsList.add(new Rooms(rs.getInt(1),rs.getString(2),rs.getFloat(3),rs.getString(4)));
                     System.out.println(rs.getString(1));
                 }
             }catch (SQLException e){
