@@ -40,46 +40,23 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void loginAction(ActionEvent e){
-        icon_loading.setVisible(true);
-        PauseTransition pt = new PauseTransition();
-        pt.setDuration(Duration.seconds(3));
-        pt.setOnFinished(ev ->{
-            String insert =  "SELECT * FROM userinfo WHERE username = ? AND password = ?";
-            try {
-                connection = handler.getconnection();
-                pst = connection.prepareStatement(insert);
-                pst.setString(1,tf_username.getText());
-                pst.setString(2,tf_password.getText());
-                ResultSet rs =  pst.executeQuery();
-                int size= 0;
-                if (rs != null)
-                {
-                    rs.beforeFirst();
-                    rs.last();
-                    size = rs.getRow();
-                }
-                if (size == 1){
-                    btn_login.getScene().getWindow().hide();
-                    Stage dashboard =  new Stage();
-                    Parent root2 = FXMLLoader.load(getClass().getResource("/resources/views/dash.fxml"));
-                    Scene scene = new Scene(root2);
-                    dashboard.setScene(scene);
-                    dashboard.show();
-
-                }else{
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setHeaderText("Login Error");
-                    alert.setContentText("Incorrect username or password");
-                    alert.show();
-                    icon_loading.setVisible(false);
-                }
-            } catch (SQLException | IOException ex) {
-                ex.printStackTrace();
-            }
-            icon_loading.setVisible(false);
-        });
-        pt.play();
+    public void loginAction(ActionEvent e)throws IOException{
+        btn_login.setDisable(true);
+        DbHandler dbHandler = new DbHandler();
+        if(dbHandler.login(tf_username.getText(), tf_password.getText())){
+            btn_login.getScene().getWindow().hide();
+            Stage dashboard =  new Stage();
+            Parent dashroot = FXMLLoader.load(getClass().getResource("/resources/views/dash.fxml"));
+            Scene dashscene = new Scene(dashroot);
+            dashboard.setScene(dashscene);
+            dashboard.show();
+            dashboard.setResizable(false);
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Login error");
+            alert.setContentText("Invalid username/password");
+            alert.show();
+        }
     }
 
     @FXML

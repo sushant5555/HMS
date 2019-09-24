@@ -31,11 +31,15 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="6a61bd34-034e-4a40-a939-990bdcc19056">
-      <console name="SQL" type="STANDARD" schema="hms" session="Main">SELECT * FROM guestinfo;
+      <console name="SQL" type="STANDARD" schema="hms" session="Main"><![CDATA[SELECT * FROM guestinfo;
 
 SELECT * FROM roomsinfo;
 
-SELECT * FROM userinfo;</console>
+SELECT * FROM userinfo;
+
+SELECT EXISTS (
+  SELECT * FROM userinfo WHERE username = 'qwe' AND password = 'qwe'    
+)]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

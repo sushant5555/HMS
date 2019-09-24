@@ -2,24 +2,29 @@ package app.database;
 
 import app.model.Guest;
 import app.model.ViewBooking;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class DbHandler {
-    public Connection getconnection(){
-        String connectionString = "jdbc:mysql://"+ DbConfig.dbhost+":"+ DbConfig.dbport+"/"+ DbConfig.dbname;
-        try{
+    public Connection getconnection() {
+        String connectionString = "jdbc:mysql://" + DbConfig.dbhost + ":" + DbConfig.dbport + "/" + DbConfig.dbname;
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection(connectionString, DbConfig.dbuser, DbConfig.dbpass);
-        }catch (ClassNotFoundException | SQLException e){
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    //CREATE
+    ///////////////////////////////////////////////////////////////////////////////////////////////CREATE
     public boolean addRoom(String rno, String price, String type) {
         try {
             String sql = "INSERT INTO `hms`.`roomsinfo` (`rno`, `rtype`, `price`, `availability`) " +
@@ -29,19 +34,19 @@ public class DbHandler {
             preparedStatement.setString(2, type);
             preparedStatement.setString(3, price);
             int result = preparedStatement.executeUpdate();
-            if (result == 1){
+            if (result == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             a.show();
         }
         return false;
     }
 
-    public boolean addGuest(Guest guest){
+    public boolean addGuest(Guest guest) {
         try {
             String sql = "INSERT INTO `hms`.`guestinfo` (`ROOM_id`, `cin`," +
                     "`contact`, `email`, `firstname`, `lastname`, `guestplus`, " +
@@ -60,144 +65,167 @@ public class DbHandler {
             int result = preparedStatement.executeUpdate();
 
             //Mark that room no. as not available now
-            String sql2 ="UPDATE `roomsinfo` SET availability='No' WHERE `rno`=?";
+            String sql2 = "UPDATE `roomsinfo` SET availability='No' WHERE `rno`=?";
             PreparedStatement ps2 = getconnection().prepareStatement(sql2);
-            ps2.setInt(1,guest.getRno());
+            ps2.setInt(1, guest.getRno());
             int result2 = ps2.executeUpdate();
-            if (result == 1 && result2 == 1){
+            if (result == 1 && result2 == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             a.show();
         }
         return false;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////READ
+    public boolean login(String username, String password) {
+        String sql = "SELECT EXISTS ( " +
+                "  SELECT * FROM userinfo WHERE username = ? AND password = ? " +
+                ")";
+        try {
+            PreparedStatement pst = getconnection().prepareStatement(sql);
+            pst.setString(1, username);
+            pst.setString(2, password);
+            ResultSet rs = pst.executeQuery();
+            if (rs != null) {
+                while (rs.next()) {
+                    if (rs.getString(1).equals("1")){
+                        return true;
+                    }
+                }
+            }
+        }catch (SQLException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("SQL Error");
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.setContentText("Error reading login database"+e);
+            alert.show();
+        }
+        return false;
+    }
 
-    //READ
-    public ResultSet getRooms(){
-        try{
+    public ResultSet getRooms() {
+        try {
             String sql = "SELECT * FROM roomsinfo;";
             Statement s = getconnection().createStatement();
-            return  s.executeQuery(sql);
-        }catch (SQLException e){
+            return s.executeQuery(sql);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ResultSet getAvailableRooms(){
-        try{
+    public ResultSet getAvailableRooms() {
+        try {
             String sql = "SELECT * FROM roomsinfo WHERE availability = 'Yes';";
             Statement s = getconnection().createStatement();
-            return  s.executeQuery(sql);
-        }catch (SQLException e){
+            return s.executeQuery(sql);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ResultSet getBookings(){
-        try{
+    public ResultSet getBookings() {
+        try {
             //language=MYSQL-SQL
             String sql = "SELECT id, cin, cout, concat(firstname, ' ' ,lastname), guestplus, email, contact, " +
                     "nationality, ROOM_id , roomsinfo.rtype, mealplan, amount " +
                     "FROM guestinfo " +
                     "JOIN roomsinfo ON ROOM_id = roomsinfo.rno;";
             Statement s = getconnection().createStatement();
-            return  s.executeQuery(sql);
-        }catch (SQLException e){
+            return s.executeQuery(sql);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ResultSet getSearchedBookings(Date fromdate, Date todate){
-        try{
+    public ResultSet getSearchedBookings(Date fromdate, Date todate) {
+        try {
             //language=MYSQL-SQL
             String sql = "SELECT id, cin, cout, concat(firstname, ' ' ,lastname), guestplus, email, contact, " +
                     "nationality, ROOM_id , roomsinfo.rtype, mealplan, amount " +
                     "FROM guestinfo " +
-                    "JOIN roomsinfo ON ROOM_id = roomsinfo.rno "+
+                    "JOIN roomsinfo ON ROOM_id = roomsinfo.rno " +
                     "WHERE cin BETWEEN ? AND ?;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
             preparedStatement.setDate(1, fromdate);
             preparedStatement.setDate(2, todate);
             return preparedStatement.executeQuery();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database read error: "+e);
+            a.setContentText("Database read error: " + e);
             e.printStackTrace();
             a.show();
         }
         return null;
     }
 
-    public ResultSet getAllTimeRevenue(){
-        try{
+    public ResultSet getAllTimeRevenue() {
+        try {
             //language=MYSQL-SQL
             String sql = "select count(id), count(cout), sum(amount) from guestinfo " +
                     "JOIN roomsinfo ON ROOM_id = roomsinfo.rno;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
             return preparedStatement.executeQuery();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-            a.setContentText("Database read error: "+e);
+            a.setContentText("Database read error: " + e);
             a.show();
         }
         return null;
     }
 
-    public ResultSet getDatedRevenue(Date from, Date to){
-        try{
+    public ResultSet getDatedRevenue(Date from, Date to) {
+        try {
             String sql = "select count(id), count(cout), sum(amount) from guestinfo " +
                     "JOIN roomsinfo ON ROOM_id = roomsinfo.rno " +
                     "WHERE cin between ? AND ? ;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
-            preparedStatement.setDate(1,from);
-            preparedStatement.setDate(2,to);
+            preparedStatement.setDate(1, from);
+            preparedStatement.setDate(2, to);
             return preparedStatement.executeQuery();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-            a.setContentText("Database read error: "+e);
+            a.setContentText("Database read error: " + e);
             e.printStackTrace();
             a.show();
         }
         return null;
     }
 
-    public ResultSet getDatedRevenueByRoomType(Date from, Date to){
-        try{
+    public ResultSet getDatedRevenueByRoomType(Date from, Date to) {
+        try {
             String sql = "select rtype, sum(amount) from guestinfo " +
                     "JOIN roomsinfo ON ROOM_id = roomsinfo.rno " +
                     "WHERE cin BETWEEN ? AND ? GROUP BY rtype;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
-            preparedStatement.setDate(1,from);
-            preparedStatement.setDate(2,to);
+            preparedStatement.setDate(1, from);
+            preparedStatement.setDate(2, to);
             return preparedStatement.executeQuery();
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
             a.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
             e.printStackTrace();
-            a.setContentText("Database read error: "+e);
+            a.setContentText("Database read error: " + e);
             a.show();
         }
         return null;
     }
 
-
-    //FETCH OCCUPIED ROOMS FOR CHECKING OUT
-    public ResultSet getRoomStatus(){
-        try{
+    public ResultSet getRoomStatus() {
+        try {
             //language=MYSQL-SQL
             String sql = "SELECT roomsinfo.rno, " +
                     "guestinfo.id, " +
@@ -209,15 +237,15 @@ public class DbHandler {
                     "JOIN guestinfo ON guestinfo.ROOM_id = roomsinfo.rno " +
                     "WHERE guestinfo.cout IS NULL;";
             Statement s = getconnection().createStatement();
-            return  s.executeQuery(sql);
-        }catch (SQLException e){
+            return s.executeQuery(sql);
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    //UPDATE
-    public boolean updateGuest(ViewBooking model){
+    //////////////////////////////////////////////////////////////////////////////////////////////////UPDATE
+    public boolean updateGuest(ViewBooking model) {
         try {
             String sql = "UPDATE guestinfo SET `contact`= ?, `email`= ?, `guestplus`= ?, `mealplan`= ?, `nationality` = ? WHERE `id`=?;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
@@ -228,13 +256,13 @@ public class DbHandler {
             preparedStatement.setString(5, model.getNationality());
             preparedStatement.setInt(6, model.getGuestid());
             int result = preparedStatement.executeUpdate();
-            if (result == 1){
+            if (result == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             e.printStackTrace();
             a.show();
         }
@@ -242,31 +270,31 @@ public class DbHandler {
     }
 
 
-    public boolean updateGuestCheckout(String id, float amount, int rno){
+    public boolean updateGuestCheckout(String id, float amount, int rno) {
         try {
             String sql = "UPDATE `hms`.`guestinfo` SET `cout`= CURDATE(), `amount`=? WHERE `id`=?;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
             preparedStatement.setFloat(1, amount);
             preparedStatement.setString(2, id);
             int result = preparedStatement.executeUpdate();
-            String sql2 ="UPDATE `roomsinfo` SET availability='Yes' WHERE `rno`=?";
+            String sql2 = "UPDATE `roomsinfo` SET availability='Yes' WHERE `rno`=?";
             PreparedStatement ps2 = getconnection().prepareStatement(sql2);
-            ps2.setInt(1,rno);
+            ps2.setInt(1, rno);
             int result2 = ps2.executeUpdate();
-            if (result == 1 && result2 ==1){
+            if (result == 1 && result2 == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             e.printStackTrace();
             a.show();
         }
         return false;
     }
 
-    public boolean updateRoom(String rno, String price, String type){
+    public boolean updateRoom(String rno, String price, String type) {
         try {
             String sql = "UPDATE `hms`.`roomsinfo` SET `price`= ?, `rtype`=? WHERE `rno`=?;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
@@ -274,38 +302,35 @@ public class DbHandler {
             preparedStatement.setString(2, type);
             preparedStatement.setString(3, rno);
             int result = preparedStatement.executeUpdate();
-            if (result == 1){
+            if (result == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             a.show();
         }
         return false;
     }
 
 
-    //DELETE
-    public boolean deleteRoom(int rno){
+    /////////////////////////////////////////////////////////////////////////////////////////////////////DELETE
+    public boolean deleteRoom(int rno) {
         try {
             String sql = "DELETE FROM `hms`.`roomsinfo` WHERE `rno`=?;";
             PreparedStatement preparedStatement = getconnection().prepareStatement(sql);
             preparedStatement.setInt(1, rno);
             int result = preparedStatement.executeUpdate();
-            if (result == 1){
+            if (result == 1) {
                 return true;
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setHeaderText(null);
-            a.setContentText("Database update error: "+e);
+            a.setContentText("Database update error: " + e);
             a.show();
         }
         return false;
     }
-
-
-
 }
